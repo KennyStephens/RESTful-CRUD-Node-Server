@@ -41,22 +41,22 @@ exports.getThree = (req, res, next) => {
 
 exports.postOne = (req, res, next) => {
   console.log(req.body)
-const name = req.body.name;
-const weapon = req.body.weapon;
-const ultimate = req.body.ultimate;
-const className = req.body.class;
+  const name = req.body.name;
+  const weapon = req.body.weapon;
+  const ultimate = req.body.ultimate;
+  const className = req.body.class;
 
-const character = new OwCharacter({
-  name: name,
-  ultimate: ultimate,
-  class: className,
-  weapon: weapon
-});
-character.save()
-  .then(result => {
-    console.log('Character Added')
-  })
-  .catch(err => console.log(err));
+  const character = new OwCharacter({
+    name: name,
+    ultimate: ultimate,
+    class: className,
+    weapon: weapon
+  });
+  character.save()
+    .then(result => {
+      res.status(201).send(result);
+    })
+    .catch(err => console.log(err));
 };
 
 exports.deleteOne = (req, res, next) => {
@@ -71,5 +71,19 @@ exports.deleteOne = (req, res, next) => {
 };
 
 exports.putOne = (req, res, next) => {
-  res.send('putOne');
+  const characterId = req.params.id;
+  const name = req.body.name;
+  const weapon = req.body.weapon;
+  const ultimate = req.body.ultimate;
+  const className = req.body.class;
+  OwCharacter.findByIdAndUpdate(characterId, {
+    name: name,
+    weapon: weapon,
+    ultimate: ultimate,
+    className: className
+  })
+    .then(result => {
+      res.status(200).send('Updated')
+    })
+    .catch(err => console.log(err));
 };
