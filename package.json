@@ -4,7 +4,8 @@
   "description": "RESTful CRUD Node Server",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/KennyStephens/RESTful-CRUD-Node-Server/issues"
   },
-  "homepage": "https://github.com/KennyStephens/RESTful-CRUD-Node-Server#readme"
+  "homepage": "https://github.com/KennyStephens/RESTful-CRUD-Node-Server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.10"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
 }
