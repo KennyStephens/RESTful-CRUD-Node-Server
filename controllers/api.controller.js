@@ -1,5 +1,18 @@
+const OwCharacter = require('../models/ow.character');
+
 exports.getOne = (req, res, next) => {
   res.send('getOne');
+  const zenyatta = new OwCharacter({
+    name: 'Zenyatta',
+    ultimate: 'Transcendance',
+    class: 'Support',
+    weapon: 'Orbs'
+  });
+  zenyatta.save()
+    .then(result => {
+      console.log('Character Added')
+    })
+    .catch(err => console.log(err));
 };
 
 exports.getTwo = (req, res, next) => {
