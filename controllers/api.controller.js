@@ -54,7 +54,8 @@ exports.postOne = (req, res, next) => {
   });
   character.save()
     .then(result => {
-      res.status(201).send(result);
+      res.status(201)
+        .send(result);
     })
     .catch(err => console.log(err));
 };
@@ -77,13 +78,14 @@ exports.putOne = (req, res, next) => {
   const ultimate = req.body.ultimate;
   const className = req.body.class;
   OwCharacter.findByIdAndUpdate(characterId, {
-    name: name,
-    weapon: weapon,
-    ultimate: ultimate,
-    className: className
-  })
+      name: name,
+      weapon: weapon,
+      ultimate: ultimate,
+      className: className
+    })
     .then(result => {
-      res.status(200).send('Updated')
+      res.status(200)
+        .send('Updated')
     })
     .catch(err => console.log(err));
 };
