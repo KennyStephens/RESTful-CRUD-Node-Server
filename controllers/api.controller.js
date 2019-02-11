@@ -21,8 +21,10 @@ exports.getAllCharacters = (req, res, next) => {
 };
 
 exports.getOneCharacter = (req, res, next) => {
-  const characterId = req.params.id;
-  OwCharacter.findById(characterId)
+  const characterName = req.params.name;
+  OwCharacter.find({
+    name: characterName
+  })
     .then(result => {
       res.send(result);
     })
