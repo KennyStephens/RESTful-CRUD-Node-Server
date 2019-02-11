@@ -9,6 +9,7 @@ Deployed to Digital Ocean
 - "/name/:name" - Get a specific Overwatch character by name
 - "/class/:class" - Get a specific Overwatch character by class
 - "/post" - Add additional character
+
   Submit new character through postman in the following format
 ```
   name: character name,
