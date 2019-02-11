@@ -42,7 +42,7 @@ exports.getByClass = (req, res, next) => {
 };
 
 exports.postOneCharacter = (req, res, next) => {
-  console.log(req.body)
+  // console.log(req.body)
   const name = req.body.name;
   const weapon = req.body.weapon;
   const ultimate = req.body.ultimate;
