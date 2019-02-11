@@ -9,6 +9,13 @@ Deployed to Digital Ocean
 - "/name/:name" - Get a specific Overwatch character by name
 - "/class/:class" - Get a specific Overwatch character by class
 - "/post" - Add additional character
+  Submit new character through postman in the following format
+```
+  name: character name,
+  ultimate: character ultimate,
+  class: character class,
+  weapon: character weapon
+```
 To post a new character follow the following:
 - "/delete/:id" - Delete a character
 - "/put/:id" - Update a character

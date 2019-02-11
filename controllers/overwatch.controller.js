@@ -31,6 +31,7 @@ exports.getByClass = (req, res, next) => {
 };
 
 exports.postOneCharacter = (req, res, next) => {
+  console.log('Post Character');
   // console.log(req.body)
   const name = req.body.name;
   const weapon = req.body.weapon;
