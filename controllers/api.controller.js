@@ -1,6 +1,6 @@
 const OwCharacter = require('../models/ow.character');
 
-exports.getOne = (req, res, next) => {
+exports.getAllCharacters = (req, res, next) => {
   OwCharacter.find()
     .then(result => {
       res.send(result);
@@ -20,7 +20,7 @@ exports.getOne = (req, res, next) => {
   //   .catch(err => console.log(err));
 };
 
-exports.getTwo = (req, res, next) => {
+exports.getOneCharacter = (req, res, next) => {
   const characterId = req.params.id;
   OwCharacter.findById(characterId)
     .then(result => {
@@ -29,7 +29,7 @@ exports.getTwo = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.getThree = (req, res, next) => {
+exports.getByClass = (req, res, next) => {
   const characterClass = req.params.class;
   OwCharacter.find({
       class: characterClass

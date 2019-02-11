@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.use('/api', APIrouter);
+app.use('/', APIrouter);
 
 mongoose.connect('mongodb+srv://kenkneesteefens:Nodecourse@cluster0-drydi.mongodb.net/overwatch', {
   useNewUrlParser: true
