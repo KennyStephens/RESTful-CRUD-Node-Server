@@ -41,7 +41,7 @@ exports.getByClass = (req, res, next) => {
     })
 };
 
-exports.postOne = (req, res, next) => {
+exports.postOneCharacter = (req, res, next) => {
   console.log(req.body)
   const name = req.body.name;
   const weapon = req.body.weapon;
@@ -62,7 +62,7 @@ exports.postOne = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.deleteOne = (req, res, next) => {
+exports.deleteOneCharacter = (req, res, next) => {
   const characterId = req.params.id;
   OwCharacter.findByIdAndDelete(characterId)
     .then(result => {
@@ -73,7 +73,7 @@ exports.deleteOne = (req, res, next) => {
     .catch(err => console.log(err));
 };
 
-exports.putOne = (req, res, next) => {
+exports.putOneCharacter = (req, res, next) => {
   const characterId = req.params.id;
   const name = req.body.name;
   const weapon = req.body.weapon;

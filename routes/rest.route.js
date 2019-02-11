@@ -7,9 +7,9 @@ router.get('/name/:name', apiController.getOneCharacter);
 router.get('/class/:class', apiController.getByClass);
 
 
-router.post('/post', apiController.postOne);
-router.delete('/delete/:id', apiController.deleteOne);
-router.put('/put/:id', apiController.putOne);
+router.post('/post', apiController.postOneCharacter);
+router.delete('/delete/:id', apiController.deleteOneCharacter);
+router.put('/put/:id', apiController.putOneCharacter);
 
 
 
