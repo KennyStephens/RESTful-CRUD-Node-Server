@@ -6,22 +6,11 @@ exports.getAllCharacters = (req, res, next) => {
       res.send(result);
     })
     .catch(err => console.log(err));
-  // res.send('getOne');
-  // const zenyatta = new OwCharacter({
-  //   name: 'Zenyatta',
-  //   ultimate: 'Transcendance',
-  //   class: 'Support',
-  //   weapon: 'Orbs'
-  // });
-  // zenyatta.save()
-  //   .then(result => {
-  //     console.log('Character Added')
-  //   })
-  //   .catch(err => console.log(err));
 };
 
 exports.getOneCharacter = (req, res, next) => {
   const characterName = req.params.name;
+
   OwCharacter.find({
     name: characterName
   })
