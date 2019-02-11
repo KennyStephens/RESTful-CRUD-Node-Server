@@ -1,4 +1,4 @@
-const OwCharacter = require('../models/ow.character');
+const OwCharacter = require('../models/overwatchCharacter');
 
 exports.getAllCharacters = (req, res, next) => {
   OwCharacter.find()
