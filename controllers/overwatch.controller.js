@@ -69,11 +69,13 @@ exports.putOneCharacter = (req, res, next) => {
   const weapon = req.body.weapon;
   const ultimate = req.body.ultimate;
   const className = req.body.class;
+  const imageUrl = req.body.imageUrl
   OwCharacter.findByIdAndUpdate(characterId, {
       name: name,
       weapon: weapon,
       ultimate: ultimate,
-      className: className
+      className: className,
+      imageUrl: imageUrl
     })
     .then(result => {
       res.status(200)

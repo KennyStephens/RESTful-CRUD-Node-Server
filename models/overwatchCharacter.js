@@ -18,6 +18,10 @@ const owCharacter = new Schema({
   ultimate: {
     type: String,
     required: true
+  },
+  imageUrl: {
+    type: String,
+    required: true
   }
 });
 
