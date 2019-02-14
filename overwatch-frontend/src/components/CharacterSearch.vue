@@ -1,12 +1,5 @@
 <template>
   <div class="container">
-    <div class="field">
-      <label class="label">Character Name</label>
-      <div class="control">
-        <input id="character-name-input" class="input" type="text" placeholder="Text input">
-      </div>
-    </div>
-
     <div id="character">
       <div id="character-name"></div>
       <div id="character-class"></div>
@@ -14,7 +7,15 @@
       <div id="character-ultimate"></div>
       <img id="character-image" src>
     </div>
-    <button @click="loadCharacter">load data</button>
+
+    <div class="field">
+      <label class="label">Character Name</label>
+      <div class="control">
+        <input id="character-name-input" class="input" type="text" placeholder="Text input">
+      </div>
+    </div>
+
+    <button class="button is-dark" @click="loadCharacter">load data</button>
   </div>
 </template>
 
@@ -25,7 +26,8 @@ export default {
   },
   methods: {
     loadCharacter() {
-      const characterNameInput = document.getElementById('character-name-input').value;
+      const characterNameInput = document.getElementById("character-name-input")
+        .value;
 
       fetch(`http://localhost:5000/name/${characterNameInput}`, {
         method: "GET",
