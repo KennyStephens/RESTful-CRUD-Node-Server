@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div id="character">
+    <div id="character" :style="{backgroundImage: 'url(' + images[0] + ')'}">
       <div id="character-name"></div>
       <div id="character-class"></div>
       <div id="character-weapon"></div>
@@ -22,7 +22,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      images: ['https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/4/46/Hanamura_concept.jpg/800px-Hanamura_concept.jpg?version=cba0e20ddb6e4d0a188668500b8bb7ab']
+    };
   },
   methods: {
     loadCharacter() {
@@ -58,4 +60,9 @@ export default {
   }
 };
 </script>
+
+<style>
+
+</style>
+
 
