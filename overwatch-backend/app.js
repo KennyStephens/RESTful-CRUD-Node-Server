@@ -26,6 +26,6 @@ mongoose.connect('mongodb+srv://kenkneesteefens:Nodecourse@cluster0-drydi.mongod
   useNewUrlParser: true
 }, () => {
   app.listen(5000, () => {
-    console.log('Server is Running');
+    console.log('Server is Running on port 5000');
   });
 });

@@ -13,15 +13,18 @@ export default {
   },
   methods: {
     loadCharacter() {
-    fetch('http://localhost:5000/name/Reaper', {
-      mode: "cors"
+    fetch('http://localhost:5000/', {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
       .then(response => {
         console.log(response);
         response.json();
       })
       .then(data => {
-        console.log(data);
+        console.log(JSON.stringify(data));
       })
       .catch(err => console.log(err));
     }
