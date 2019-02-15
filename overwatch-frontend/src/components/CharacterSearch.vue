@@ -1,21 +1,54 @@
 <template>
   <div class="container">
-    <div id="character" :style="{backgroundImage: 'url(' + images[0] + ')'}">
-      <div id="character-name"></div>
-      <div id="character-class"></div>
-      <div id="character-weapon"></div>
-      <div id="character-ultimate"></div>
-      <img id="character-image" src>
-    </div>
-
-    <div class="field">
-      <label class="label">Character Name</label>
-      <div class="control">
-        <input id="character-name-input" class="input" type="text" placeholder="Text input">
+    <div class="level">
+      <div class="field">
+        <label class="label">Character Name</label>
+        <div class="control">
+          <input id="character-name-input" class="input" type="text" placeholder="Text input">
+        </div>
       </div>
     </div>
 
-    <button class="button is-dark" @click="loadCharacter">load data</button>
+    <transition name="fade">
+      <div
+        v-if="charDisplay"
+        class="columns character"
+        :style="{backgroundImage: 'url(' + images[0] + ')'}"
+      >
+        <div class="column character-info is-one-third">
+          <div>
+            Name:
+            <span id="character-name"></span>
+          </div>
+          <div>
+            Class:
+            <span id="character-class"></span>
+          </div>
+          <div>
+            Weapons
+            <span id="character-weapon"></span>
+          </div>
+          <div>
+            Ultimate:
+            <span id="character-ultimate"></span>
+          </div>
+        </div>
+
+        <div class="column">
+          <transition name="slide-fade">
+            <img
+              v-if="charImageDisplay"
+              class="is-block"
+              style="margin: auto;"
+              id="character-image"
+            >
+          </transition>
+        </div>
+      </div>
+    </transition>
+    <div class="level">
+      <button class="button is-dark" @click="loadCharacter">load data</button>
+    </div>
   </div>
 </template>
 
@@ -23,11 +56,20 @@
 export default {
   data() {
     return {
-      images: ['https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/4/46/Hanamura_concept.jpg/800px-Hanamura_concept.jpg?version=cba0e20ddb6e4d0a188668500b8bb7ab','https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/d/de/Anubis_concept.jpg/800px-Anubis_concept.jpg?version=01cc8d241e63fa2721da953444149630']
-    }
+      images: [
+        "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/4/46/Hanamura_concept.jpg/800px-Hanamura_concept.jpg?version=cba0e20ddb6e4d0a188668500b8bb7ab",
+        "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/d/de/Anubis_concept.jpg/800px-Anubis_concept.jpg?version=01cc8d241e63fa2721da953444149630"
+      ],
+      charDisplay: false,
+      charImageDisplay: false
+    };
   },
   methods: {
     loadCharacter() {
+      this.charImageDisplay = true;
+      this.charDisplay = true;
+      
+      
       const characterNameInput = document.getElementById("character-name-input")
         .value;
 
@@ -62,10 +104,40 @@ export default {
 </script>
 
 <style>
-  #character {
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.character {
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 80%;
+  margin: auto;
+  border-radius: 4px;
+}
+
+.character-info {
+  background: rgba(255, 255, 255, 0.7);
+  margin: 20px 0px;
+  border-radius: 0px 4px 4px 0px;
+}
+
+/* Transitions and Animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transition: all 5s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>
 
 
