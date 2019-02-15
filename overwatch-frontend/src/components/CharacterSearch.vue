@@ -4,7 +4,13 @@
       <div class="field">
         <label class="label">Character Name</label>
         <div class="control">
-          <input id="character-name-input" class="input" type="text" placeholder="Text input">
+          <input
+            id="character-name-input"
+            class="input"
+            type="text"
+            placeholder="Text input"
+            value="Zenyatta"
+          >
         </div>
       </div>
     </div>
@@ -35,14 +41,7 @@
         </div>
 
         <div class="column">
-          <transition name="slide-fade">
-            <img
-              v-if="charImageDisplay"
-              class="is-block"
-              style="margin: auto;"
-              id="character-image"
-            >
-          </transition>
+          <img class="is-block slide-in-left" style="margin: auto;" id="character-image">
         </div>
       </div>
     </transition>
@@ -68,8 +67,7 @@ export default {
     loadCharacter() {
       this.charImageDisplay = true;
       this.charDisplay = true;
-      
-      
+
       const characterNameInput = document.getElementById("character-name-input")
         .value;
 
@@ -127,16 +125,19 @@ export default {
   opacity: 0;
 }
 
-.slide-fade-enter-active {
-  transition: all 5s ease;
+.slide-in-left {
+  animation: ease-out 0.5s;
+  animation-delay: 1s;
 }
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
+
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+   opacity: 1;
+  }
 }
 </style>
 
