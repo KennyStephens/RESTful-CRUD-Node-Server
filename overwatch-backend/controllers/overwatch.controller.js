@@ -1,19 +1,21 @@
 const OwCharacter = require('../models/overwatchCharacter');
 
-exports.getAllCharacters = (req, res, next) => {
-  OwCharacter.find()
-    .then(result => {
-      res.send(result);
-    })
-    .catch(err => console.log(err));
+exports.getAllCharacters = async (req, res, next) => {
+  try {
+    const allCharacters = await OwCharacter.find()
+    console.log(allCharacters)
+    res.send(allCharacters);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getOneCharacter = (req, res, next) => {
   const characterName = req.params.name;
 
   OwCharacter.find({
-    name: characterName
-  })
+      name: characterName
+    })
     .then(result => {
       res.send(result);
     })
