@@ -13,6 +13,7 @@
           >
         </div>
       </div>
+      <button class="button is-dark" @click="loadCharacter">load data</button>
     </div>
 
     <transition name="fade">
@@ -45,9 +46,6 @@
         </div>
       </div>
     </transition>
-    <div class="level">
-      <button class="button is-dark" @click="loadCharacter">load data</button>
-    </div>
   </div>
 </template>
 
@@ -136,7 +134,7 @@ export default {
   }
 
   100% {
-   opacity: 1;
+    opacity: 1;
   }
 }
 </style>
