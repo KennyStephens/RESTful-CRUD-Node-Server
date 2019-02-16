@@ -134,6 +134,8 @@ export default {
   position: relative;
   top: 100px;
   transform: rotate(-90deg);
+  background: #43484c;
+  color: #fff;
 }
 </style>
 
