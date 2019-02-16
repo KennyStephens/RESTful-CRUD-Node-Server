@@ -1,20 +1,29 @@
 <template>
   <div class="container">
-    <div class="level">
-      <div class="field">
-        <label class="label">Character Name</label>
-        <div class="control">
-          <input
-            id="character-name-input"
-            class="input"
-            type="text"
-            placeholder="Text input"
-            value="Zenyatta"
-          >
+    <div class="row">
+      <div class="col-sm">
+        <div class="form-group">
+          <label>Character Name</label>
+          <div class="form-control">
+            <input
+              id="character-name-input"
+              class="input"
+              type="text"
+              placeholder="Text input"
+              value="Zenyatta"
+            >
+          </div>
         </div>
-      </div>
-      <button class="button is-dark" @click="loadCharacter">load data</button>
+      
     </div>
+          <div class="col-sm">
+            <button class="btn btn-primary" @click="loadCharacter">load data</button>
+          </div>
+  </div>
+  
+        
+      
+  
 
     <transition name="fade">
       <div
