@@ -1,60 +1,21 @@
 <template>
   <div class="container">
+    <button class="btn btn-primary" @click="loadCharacter">load data</button>
     <div class="row">
-      <div class="col-sm">
-        <div class="form-group">
-          <label>Character Name</label>
-          <div class="form-control">
-            <input
-              id="character-name-input"
-              class="input"
-              type="text"
-              placeholder="Text input"
-              value="Zenyatta"
-            >
+      <div class="col-6">
+        <div
+          class="card"
+          v-for="character in characterData"
+          :key="character._id"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Name: {{ character.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Class: {{ character.class }}</h6>
+            <img :src="character.imageUrl" alt>
           </div>
-        </div>
-      
-    </div>
-          <div class="col-sm">
-            <button class="btn btn-primary" @click="loadCharacter">load data</button>
-          </div>
-  </div>
-  
-        
-      
-  
-
-    <transition name="fade">
-      <div
-        v-if="charDisplay"
-        class="columns character"
-        :style="{backgroundImage: 'url(' + images[0] + ')'}"
-      >
-        <div class="column character-info is-one-third">
-          <div>
-            Name:
-            <span id="character-name"></span>
-          </div>
-          <div>
-            Class:
-            <span id="character-class"></span>
-          </div>
-          <div>
-            Weapons
-            <span id="character-weapon"></span>
-          </div>
-          <div>
-            Ultimate:
-            <span id="character-ultimate"></span>
-          </div>
-        </div>
-
-        <div class="column">
-          <img class="is-block slide-in-left" style="margin: auto;" id="character-image">
         </div>
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 
@@ -67,7 +28,8 @@ export default {
         "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/d/de/Anubis_concept.jpg/800px-Anubis_concept.jpg?version=01cc8d241e63fa2721da953444149630"
       ],
       charDisplay: false,
-      charImageDisplay: false
+      charImageDisplay: false,
+      characterData: []
     };
   },
   methods: {
@@ -75,10 +37,7 @@ export default {
       this.charImageDisplay = true;
       this.charDisplay = true;
 
-      const characterNameInput = document.getElementById("character-name-input")
-        .value;
-
-      fetch(`http://localhost:5000/name/${characterNameInput}`, {
+      fetch(`http://localhost:5000/`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -88,19 +47,8 @@ export default {
           return response.json();
         })
         .then(data => {
-          console.log(data[0]);
-          const characterData = data[0];
-          document.getElementById("character-name").innerHTML =
-            characterData.name;
-          document.getElementById("character-class").innerHTML =
-            characterData.class;
-          document.getElementById("character-weapon").innerHTML =
-            characterData.weapon;
-          document.getElementById("character-ultimate").innerHTML =
-            characterData.ultimate;
-          document
-            .getElementById("character-image")
-            .setAttribute("src", characterData.imageUrl);
+          console.log(data);
+          this.characterData = data;
         })
         .catch(err => console.log(err));
     }
