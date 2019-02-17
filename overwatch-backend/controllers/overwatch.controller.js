@@ -39,12 +39,14 @@ exports.postOneCharacter = (req, res, next) => {
   const weapon = req.body.weapon;
   const ultimate = req.body.ultimate;
   const className = req.body.class;
+  const imageUrl = req.body.imageUrl
 
   const character = new OwCharacter({
     name: name,
     ultimate: ultimate,
     class: className,
-    weapon: weapon
+    weapon: weapon,
+    imageUrl: imageUrl
   });
   character.save()
     .then(result => {

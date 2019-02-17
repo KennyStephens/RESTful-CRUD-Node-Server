@@ -5,7 +5,7 @@
           <h1 class="title has-text-light">OverwatchDex</h1>
           <h2 class="subtitle has-text-light">The Characters</h2>
           <router-link to="/">Home</router-link>
-          <router-link to="/Second">Second Page</router-link>
+          <router-link to="/add-character">Add Character</router-link>
         </div>
       </div>
     </section>
