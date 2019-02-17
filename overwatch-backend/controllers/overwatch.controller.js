@@ -51,7 +51,7 @@ exports.postOneCharacter = (req, res, next) => {
   character.save()
     .then(result => {
       res.status(201)
-        .send(result);
+        .redirect('http://localhost:8080/')
     })
     .catch(err => console.log(err));
 };
