@@ -18,6 +18,7 @@
                 <div class="flip-card-back">
                   <p>Name: <span class="has-text-weight-bold">{{ character.name }}</span></p>
                   <p>Class: <span class="has-text-weight-bold">{{ character.class }}</span></p>
+                  <p>Weapon: <span class="has-text-weight-bold">{{ character.weapon }}</span></p>
                   <p>Ultimate: <span class="has-text-weight-bold">{{ character.ultimate }}</span></p>
                   <button class="button is-danger is-small">Delete Character</button>
                 </div>
