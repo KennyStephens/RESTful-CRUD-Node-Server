@@ -1,12 +1,11 @@
 <template>
   <div>
-
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
           <div
             class="column is-4 character-card"
-            v-for="character in characterData"
+            v-for="(character, i) in characterData"
             :key="character._id"
           >
             <div class="flip-card">
@@ -16,11 +15,26 @@
                   <img :src="character.imageUrl" alt="Avatar" style="max-height:375px;">
                 </div>
                 <div class="flip-card-back">
-                  <p>Name: <span class="has-text-weight-bold">{{ character.name }}</span></p>
-                  <p>Class: <span class="has-text-weight-bold">{{ character.class }}</span></p>
-                  <p>Weapon: <span class="has-text-weight-bold">{{ character.weapon }}</span></p>
-                  <p>Ultimate: <span class="has-text-weight-bold">{{ character.ultimate }}</span></p>
-                  <button class="button is-danger is-small">Delete Character</button>
+                  <p>
+                    Name:
+                    <span class="has-text-weight-bold">{{ character.name }}</span>
+                  </p>
+                  <p>
+                    Class:
+                    <span class="has-text-weight-bold">{{ character.class }}</span>
+                  </p>
+                  <p>
+                    Weapon:
+                    <span class="has-text-weight-bold">{{ character.weapon }}</span>
+                  </p>
+                  <p>
+                    Ultimate:
+                    <span class="has-text-weight-bold">{{ character.ultimate }}</span>
+                  </p>
+                  <button
+                    class="button is-danger is-small"
+                    @click="deleteCharacter(i)"
+                  >Delete Character</button>
                 </div>
               </div>
             </div>
@@ -43,29 +57,37 @@ export default {
     };
   },
   methods: {
-
-  },
-  created() {
-      fetch(`http://localhost:5000/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
-        }
+    deleteCharacter(i) {
+      const characterId = this.characterData[i]._id;
+      return fetch(`http://localhost:5000/delete/${characterId}`, {
+        method: 'DELETE'
       })
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          console.log(data);
-          this.characterData = data;
+        .then(result => {
+          return console.log(result)
         })
         .catch(err => console.log(err));
     }
+  },
+  created() {
+    fetch(`http://localhost:5000/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        this.characterData = data;
+      })
+      .catch(err => console.log(err));
+  }
 };
 </script>
 
 <style scoped>
-
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
@@ -130,7 +152,7 @@ export default {
   margin-left: 10px;
   /* transform: rotate(-90deg);  */
   color: #405275;
-  z-index: 1
+  z-index: 1;
 }
 
 .flip-card-back p {
