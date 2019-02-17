@@ -69,18 +69,19 @@ exports.deleteOneCharacter = (req, res, next) => {
 };
 
 exports.putOneCharacter = (req, res, next) => {
-  const characterId = req.params.id;
-  const name = req.body.name;
-  const weapon = req.body.weapon;
-  const ultimate = req.body.ultimate;
-  const className = req.body.class;
-  const imageUrl = req.body.imageUrl
+  console.log('put controller');
+  const characterId = req.body.id;
+  const updatedName = req.body.name;
+  const updatedWeapon = req.body.weapon;
+  const updatedUltimate = req.body.ultimate;
+  const updatedClass = req.body.class;
+  const updatedImageUrl = req.body.imageUrl
   OwCharacter.findByIdAndUpdate(characterId, {
-      name: name,
-      weapon: weapon,
-      ultimate: ultimate,
-      className: className,
-      imageUrl: imageUrl
+      name: updatedName,
+      weapon: updatedWeapon,
+      ultimate: updatedUltimate,
+      className: updatedClass,
+      imageUrl: updatedImageUrl
     })
     .then(result => {
       res.status(200)

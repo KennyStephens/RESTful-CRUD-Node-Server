@@ -32,6 +32,11 @@
                     <span class="has-text-weight-bold">{{ character.ultimate }}</span>
                   </p>
                   <button
+                    class="button is-primary is-small"
+                    style="margin-bottom: 6px;"
+                    @click="editCharacter(i)"
+                  >Edit Character</button>
+                  <button
                     class="button is-danger is-small"
                     @click="deleteCharacter(i)"
                   >Delete Character</button>
@@ -42,6 +47,50 @@
         </div>
       </div>
     </section>
+    <div class="modal">
+      <div class="modal-background has-background-grey-dark"></div>
+      <div class="modal-content">
+        <form :action="characterEditUrl" method="PUT" >
+        <div class="field">
+          <label class="label has-text-light">Name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Character Name" name="name" :value="characterEditData.name">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label has-text-light">Class</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Character Class" name="class" :value="characterEditData.class">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label has-text-light">Weapon</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Character Weapons" name="weapon" :value="characterEditData.weapon">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label has-text-light">Ultimate</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Character Ultimate" name="ultimate" :value="characterEditData.ultimate">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label has-text-light">Image URL</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Image URL" name="imageUrl" :value="characterEditData.imageUrl">
+          </div>
+        </div>
+        <input type="hidden" value="characterEditData.id" name="id">
+        <div class="field">
+          <div class="control">
+            <button class="button is-link" type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      <button @click="modalClose" class="modal-close is-large" aria-label="close"></button>
+    </div>
   </div>
 </template>
 
@@ -53,19 +102,42 @@ export default {
         "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/4/46/Hanamura_concept.jpg/800px-Hanamura_concept.jpg?version=cba0e20ddb6e4d0a188668500b8bb7ab",
         "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/d/de/Anubis_concept.jpg/800px-Anubis_concept.jpg?version=01cc8d241e63fa2721da953444149630"
       ],
-      characterData: []
+      characterData: [],
+      characterEditData: {},
+      characterEditUrl: ""
     };
   },
   methods: {
     deleteCharacter(i) {
       const characterId = this.characterData[i]._id;
       return fetch(`http://localhost:5000/delete/${characterId}`, {
-        method: 'DELETE'
+        method: "DELETE"
       })
         .then(result => {
-          return console.log(result)
+          return console.log(result);
         })
         .catch(err => console.log(err));
+    },
+    editCharacter(i) {
+      const modal = document.querySelector('.modal').classList.add('is-active');
+    
+      let characterData = this.characterData[i];
+      console.log(characterData._id);
+
+      this.characterEditData = {
+        id: characterData._id,
+        name: characterData.name,
+        class: characterData.class,
+        weapon: characterData.weapon,
+        ultimate: characterData.ultimate,
+        imageUrl: characterData.imageUrl
+      }
+
+      this.characterEditUrl = `http://localhost:5000/put/${characterData._id}`;
+    },
+    modalClose() {
+      const modal = document.querySelector('.modal');
+      modal.classList.remove('is-active');
     }
   },
   created() {
@@ -79,7 +151,7 @@ export default {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        // console.log(data);
         this.characterData = data;
       })
       .catch(err => console.log(err));
@@ -156,7 +228,7 @@ export default {
 }
 
 .flip-card-back p {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .character-card {
