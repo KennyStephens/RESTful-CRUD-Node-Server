@@ -3,7 +3,7 @@ const OwCharacter = require('../models/overwatchCharacter');
 exports.getAllCharacters = async (req, res, next) => {
   try {
     const allCharacters = await OwCharacter.find()
-    console.log(allCharacters)
+    // console.log(allCharacters)
     res.send(allCharacters);
   } catch (error) {
     console.log(error);
@@ -57,6 +57,7 @@ exports.postOneCharacter = (req, res, next) => {
 };
 
 exports.deleteOneCharacter = (req, res, next) => {
+  console.log(req);
   const characterId = req.params.id;
   OwCharacter.findByIdAndDelete(characterId)
     .then(result => {
