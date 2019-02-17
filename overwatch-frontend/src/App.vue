@@ -1,20 +1,18 @@
 <template>
   <div id="app">
-    <navbar />
-    
-    <character-search />
+    <ow-header></ow-header>
+    <router-view />
+   
   </div>
 </template>
 
 <script>
-import CharacterSearch from "./components/CharacterSearch.vue";
-import Navbar from "./components/Navbar.vue";
+import OwHeader from "./components/OwHeader.vue";
 
 export default {
   name: "app",
   components: {
-    CharacterSearch,
-    Navbar
+    OwHeader
   }
 };
 </script>

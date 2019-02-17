@@ -1,13 +1,5 @@
 <template>
   <div>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Overwatch Masters</h1>
-          <h2 class="subtitle">The Characters</h2>
-        </div>
-      </div>
-    </section>
 
     <section class="section">
       <div class="container">
@@ -27,6 +19,7 @@
                   <p>Name: <span class="has-text-weight-bold">{{ character.name }}</span></p>
                   <p>Class: <span class="has-text-weight-bold">{{ character.class }}</span></p>
                   <p>Ultimate: <span class="has-text-weight-bold">{{ character.ultimate }}</span></p>
+                  <button class="button is-danger is-small">Delete Character</button>
                 </div>
               </div>
             </div>
@@ -71,6 +64,7 @@ export default {
 </script>
 
 <style scoped>
+
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
   background-color: transparent;
@@ -112,6 +106,7 @@ export default {
 /* Style the back side */
 .flip-card-back {
   background-color: #405275;
+  /* background-image: url('https://overwatch.gamepedia.com/g00/3_c-4vclydhajo.nhtlwlkph.jvt_/c-4TVYLWOLBZ88x24oaawzx3ax2fx2fvclydhajo.nhtlwlkph.jvtx2ftlkphx2fvclydhajo.nhtlwlkph.jvtx2f8x2f80x2fZrpu-Ivkf-Ihjrnyvbuk.qwnx3fp87j.thyrx3duvaOATS_$/$/$/$/$/$'); */
   color: white;
   transform: rotateY(180deg);
   display: flex;
