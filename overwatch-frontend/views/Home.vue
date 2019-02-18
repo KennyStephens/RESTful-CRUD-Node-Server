@@ -52,44 +52,79 @@
       <div class="modal-content">
         <h1 class="is-size-2 has-text-light">Edit a Character</h1>
         <hr>
-        <form action="http://localhost:5000/put" method="PUT" >
-        <div class="field">
-          <label class="label has-text-light">Name</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Character Name" name="name" :value="characterEditData.name">
+        <form action="http://localhost:5000/put" method="POST">
+          <div class="field">
+            <label class="label has-text-light">Name</label>
+            <div class="control">
+              <input
+                id="name"
+                class="input"
+                type="text"
+                placeholder="Character Name"
+                name="name"
+                :value="characterEditData.name"
+              >
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label class="label has-text-light">Class</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Character Class" name="class" :value="characterEditData.class">
+          <div class="field">
+            <label class="label has-text-light">Class</label>
+            <div class="control">
+              <input
+                id="class"
+                class="input"
+                type="text"
+                placeholder="Character Class"
+                name="class"
+                :value="characterEditData.class"
+              >
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label class="label has-text-light">Weapon</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Character Weapons" name="weapon" :value="characterEditData.weapon">
+          <div class="field">
+            <label class="label has-text-light">Weapon</label>
+            <div class="control">
+              <input
+                id="weapon"
+                class="input"
+                type="text"
+                placeholder="Character Weapon"
+                name="weapon"
+                :value="characterEditData.weapon"
+              >
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label class="label has-text-light">Ultimate</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Character Ultimate" name="ultimate" :value="characterEditData.ultimate">
+          <div class="field">
+            <label class="label has-text-light">Ultimate</label>
+            <div class="control">
+              <input
+                id="ultimate"
+                class="input"
+                type="text"
+                placeholder="Character Ultimate"
+                name="ultimate"
+                :value="characterEditData.ultimate"
+              >
+            </div>
           </div>
-        </div>
-        <div class="field">
-          <label class="label has-text-light">Image URL</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Image URL" name="imageUrl" :value="characterEditData.imageUrl">
+          <div class="field">
+            <label class="label has-text-light">Image URL</label>
+            <div class="control">
+              <input
+                id="imageUrl"
+                class="input"
+                type="text"
+                placeholder="Image URL"
+                name="imageUrl"
+                :value="characterEditData.imageUrl"
+              >
+            </div>
           </div>
-        </div>
-        <input type="hidden" value="characterEditData.id" name="id">
-        <div class="field">
-          <div class="control">
-            <button class="button is-link" type="submit">Submit</button>
+          <input id="id" type="hidden" :value="characterEditData.id" name="id">
+          <div class="field">
+            <div class="control">
+              <button class="button is-link" type="button" @click="updateCharacter">Submit</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
       </div>
       <button @click="modalClose" class="modal-close is-large" aria-label="close"></button>
     </div>
@@ -120,10 +155,10 @@ export default {
         .catch(err => console.log(err));
     },
     editCharacter(i) {
-      const modal = document.querySelector('.modal').classList.add('is-active');
-    
-      let characterData = this.characterData[i];
-      console.log(characterData._id);
+      const modal = document.querySelector(".modal").classList.add("is-active");
+
+      const characterData = this.characterData[i];
+      // console.log(characterData._id);
 
       this.characterEditData = {
         id: characterData._id,
@@ -132,11 +167,39 @@ export default {
         weapon: characterData.weapon,
         ultimate: characterData.ultimate,
         imageUrl: characterData.imageUrl
-      }
+      };
+    },
+    updateCharacter() {
+      // console.log(this.characterEditData);
+      const id = document.getElementById('id').value;
+      const name = document.getElementById("name").value;
+      const className = document.getElementById("class").value;
+      const weapon = document.getElementById("weapon").value;
+      const ultimate = document.getElementById("ultimate").value;
+      const imageUrl = document.getElementById("imageUrl").value;
+
+      const updatedCharacterData = {
+        id,
+        name,
+        className,
+        weapon,
+        ultimate,
+        imageUrl
+      };
+      // console.log(updatedCharacterData)
+      fetch("http://localhost:5000/put", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedCharacterData)
+      })
+        .then(result => console.log(result))
+        .catch(err => console.log(err));
     },
     modalClose() {
-      const modal = document.querySelector('.modal');
-      modal.classList.remove('is-active');
+      const modal = document.querySelector(".modal");
+      modal.classList.remove("is-active");
     }
   },
   created() {
@@ -235,7 +298,7 @@ export default {
 }
 
 .modal-background {
-  background: rgba(0, 0, 0, .95);
+  background: rgba(0, 0, 0, 0.95);
 }
 </style>
 
