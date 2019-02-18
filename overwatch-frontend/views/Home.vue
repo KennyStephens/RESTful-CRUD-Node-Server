@@ -48,9 +48,11 @@
       </div>
     </section>
     <div class="modal">
-      <div class="modal-background has-background-grey-dark"></div>
+      <div class="modal-background"></div>
       <div class="modal-content">
-        <form :action="characterEditUrl" method="PUT" >
+        <h1 class="is-size-2 has-text-light">Edit a Character</h1>
+        <hr>
+        <form action="http://localhost:5000/put" method="PUT" >
         <div class="field">
           <label class="label has-text-light">Name</label>
           <div class="control">
@@ -103,8 +105,7 @@ export default {
         "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/d/de/Anubis_concept.jpg/800px-Anubis_concept.jpg?version=01cc8d241e63fa2721da953444149630"
       ],
       characterData: [],
-      characterEditData: {},
-      characterEditUrl: ""
+      characterEditData: {}
     };
   },
   methods: {
@@ -132,8 +133,6 @@ export default {
         ultimate: characterData.ultimate,
         imageUrl: characterData.imageUrl
       }
-
-      this.characterEditUrl = `http://localhost:5000/put/${characterData._id}`;
     },
     modalClose() {
       const modal = document.querySelector('.modal');
@@ -233,6 +232,10 @@ export default {
 
 .character-card {
   margin-bottom: 40px;
+}
+
+.modal-background {
+  background: rgba(0, 0, 0, .95);
 }
 </style>
 

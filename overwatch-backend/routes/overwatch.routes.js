@@ -9,7 +9,7 @@ router.get('/class/:class', overwatchController.getByClass);
 
 router.post('/post', overwatchController.postOneCharacter);
 router.delete('/delete/:id', overwatchController.deleteOneCharacter);
-router.put('/put/:id', overwatchController.putOneCharacter);
+router.put('/put', overwatchController.putOneCharacter);
 
 
 

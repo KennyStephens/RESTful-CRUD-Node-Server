@@ -80,7 +80,7 @@ exports.putOneCharacter = (req, res, next) => {
       name: updatedName,
       weapon: updatedWeapon,
       ultimate: updatedUltimate,
-      className: updatedClass,
+      class: updatedClass,
       imageUrl: updatedImageUrl
     })
     .then(result => {

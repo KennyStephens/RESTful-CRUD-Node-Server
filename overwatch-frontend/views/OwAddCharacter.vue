@@ -1,6 +1,8 @@
 <template>
   <section class="section">
     <div class="container">
+      <h1 class="is-size-2">Add a Character</h1>
+      <hr>
       <form action="http://localhost:5000/post" method="POST">
         <div class="field">
           <label class="label">Name</label>
