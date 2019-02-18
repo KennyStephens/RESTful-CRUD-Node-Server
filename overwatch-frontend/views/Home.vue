@@ -70,11 +70,11 @@
             <label class="label has-text-light">Class</label>
             <div class="control">
               <input
-                id="class"
+                id="className"
                 class="input"
                 type="text"
                 placeholder="Character Class"
-                name="class"
+                name="className"
                 :value="characterEditData.class"
               >
             </div>
@@ -173,7 +173,7 @@ export default {
       // console.log(this.characterEditData);
       const id = document.getElementById('id').value;
       const name = document.getElementById("name").value;
-      const className = document.getElementById("class").value;
+      const characterClass = document.getElementById("className").value;
       const weapon = document.getElementById("weapon").value;
       const ultimate = document.getElementById("ultimate").value;
       const imageUrl = document.getElementById("imageUrl").value;
@@ -181,12 +181,12 @@ export default {
       const updatedCharacterData = {
         id,
         name,
-        className,
+        characterClass,
         weapon,
         ultimate,
         imageUrl
       };
-      // console.log(updatedCharacterData)
+      console.log(updatedCharacterData)
       fetch("http://localhost:5000/put", {
         method: "PUT",
         headers: {

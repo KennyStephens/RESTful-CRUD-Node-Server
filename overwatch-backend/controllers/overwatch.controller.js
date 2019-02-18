@@ -70,12 +70,12 @@ exports.deleteOneCharacter = (req, res, next) => {
 
 exports.putOneCharacter = (req, res, next) => {
   console.log('put controller');
-  console.log(req.body);
+  console.log(req.body.class);
   const characterId = req.body.id;
   const updatedName = req.body.name;
   const updatedWeapon = req.body.weapon;
   const updatedUltimate = req.body.ultimate;
-  const updatedClass = req.body.class;
+  const updatedClass = req.body.className;
   const updatedImageUrl = req.body.imageUrl
 
   OwCharacter.findByIdAndUpdate(characterId, {
