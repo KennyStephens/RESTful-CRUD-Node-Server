@@ -70,11 +70,11 @@
             <label class="label has-text-light">Class</label>
             <div class="control">
               <input
-                id="className"
+                id="characterClass"
                 class="input"
                 type="text"
                 placeholder="Character Class"
-                name="className"
+                name="characterClass"
                 :value="characterEditData.class"
               >
             </div>
@@ -173,7 +173,7 @@ export default {
       // console.log(this.characterEditData);
       const id = document.getElementById('id').value;
       const name = document.getElementById("name").value;
-      const characterClass = document.getElementById("className").value;
+      const characterClass = document.getElementById("characterClass").value;
       const weapon = document.getElementById("weapon").value;
       const ultimate = document.getElementById("ultimate").value;
       const imageUrl = document.getElementById("imageUrl").value;
@@ -256,14 +256,13 @@ export default {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #f19c1d;
+  background-image: linear-gradient(#f19c1d, #da880f);
   color: black;
 }
 
 /* Style the back side */
 .flip-card-back {
   background-color: #405275;
-  /* background-image: url('https://overwatch.gamepedia.com/g00/3_c-4vclydhajo.nhtlwlkph.jvt_/c-4TVYLWOLBZ88x24oaawzx3ax2fx2fvclydhajo.nhtlwlkph.jvtx2ftlkphx2fvclydhajo.nhtlwlkph.jvtx2f8x2f80x2fZrpu-Ivkf-Ihjrnyvbuk.qwnx3fp87j.thyrx3duvaOATS_$/$/$/$/$/$'); */
   color: white;
   transform: rotateY(180deg);
   display: flex;
