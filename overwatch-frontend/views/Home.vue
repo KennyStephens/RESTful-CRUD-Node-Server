@@ -230,7 +230,6 @@ export default {
   width: 100%;
   height: 250px;
   perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  animation: float 3s ease-in-out infinite;
 }
 
 /* This container is needed to position the front and back side */
@@ -303,11 +302,6 @@ export default {
   background: rgba(0, 0, 0, 0.95);
 }
 
-@keyframes float {
-    from { transform: translate(0,  0px); }
-    65%  { transform: translate(0, 3px); }
-    to   { transform: translate(0, -0px); }    
-}
 </style>
 
 
