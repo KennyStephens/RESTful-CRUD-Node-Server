@@ -9,19 +9,19 @@
           <div class="columns">
             <div class="column is-marginless">
               <div class="characterDataContainer">
-                <p>
+                <p class="is-size-2">
                   Name:
                   <span class="has-text-weight-bold">{{ characterData.name }}</span>
                 </p>
-                <p>
+                <p class="is-size-2">
                   Class:
                   <span class="has-text-weight-bold">{{ characterData.class }}</span>
                 </p>
-                <p>
+                <p class="is-size-2">
                   Weapon:
                   <span class="has-text-weight-bold">{{ characterData.weapon }}</span>
                 </p>
-                <p>
+                <p class="is-size-2">
                   Ultimate:
                   <span class="has-text-weight-bold">{{ characterData.ultimate }}</span>
                 </p>
@@ -96,11 +96,18 @@ export default {
 <style>
 .card-background {
   background-size: cover;
+  border-radius: 6px;
+  box-shadow: 3px 3px 3px #aaa;
 }
 
 .characterDataContainer {
     background: rgba(255, 255, 255, .46);
     padding: 20px;
+    border-radius: 0px 6px 6px 0;
+}
+
+img {
+    max-height: 350px;
 }
 </style>
 
