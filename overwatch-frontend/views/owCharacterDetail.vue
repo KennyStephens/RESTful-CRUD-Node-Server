@@ -7,7 +7,7 @@
       >
         <div class="card-content" style="padding-left: 0;">
           <div class="columns">
-            <div class="column is-marginless">
+            <div class="column">
               <div class="characterDataContainer">
                 <p class="is-size-2">
                   Name:
@@ -90,18 +90,17 @@ export default {
       console.log(imageArraySelection);
     },
     imageTransition() {
-        document.querySelector('img').style.opacity = "1";
-        document.querySelector('img').style.right = "0";
-        
+      document.querySelector("img").style.opacity = "1";
+      document.querySelector("img").style.right = "0";
     }
   },
   mounted() {
-      this.imageTransition();
+    this.imageTransition();
   }
 };
 </script>
 
-<style>
+<style scoped>
 .card-background {
   background-size: cover;
   border-radius: 6px;
@@ -110,17 +109,17 @@ export default {
 }
 
 .characterDataContainer {
-    background: rgba(255, 255, 255, .46);
-    padding: 20px;
-    border-radius: 0px 6px 6px 0;
+  background: rgba(255, 255, 255, 0.46);
+  padding: 20px;
+  border-radius: 0px 6px 6px 0;
 }
 
 img {
-    max-height: 350px;
-    opacity: 0;
-    position: relative;
-    right: -600px;
-    transition: all 1s;
+  max-height: 350px;
+  opacity: 0;
+  position: relative;
+  right: -600px;
+  transition: all .75s;
 }
 </style>
 

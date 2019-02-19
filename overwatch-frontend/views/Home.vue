@@ -31,11 +31,11 @@
                     Ultimate:
                     <span class="has-text-weight-bold">{{ character.ultimate }}</span>
                   </p>
-                  <router-link :to="/character-detail/ + character.name">
-                    <button
+                  <router-link :to="/character-detail/ + character.name" tag="button" class="button is-primary is-small" style="margin-bottom: 6px;">More Details
+                    <!-- <button
                       class="button is-primary is-small"
                       style="margin-bottom: 6px;"
-                    >More Details</button>
+                    >More Details</button> -->
                   </router-link>
                   <button
                     class="button is-primary is-small"
