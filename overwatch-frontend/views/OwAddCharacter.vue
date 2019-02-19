@@ -29,6 +29,12 @@
           </div>
         </div>
         <div class="field">
+          <label class="label">Quote</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Quote" name="quote">
+          </div>
+        </div>
+        <div class="field">
           <label class="label">Image URL</label>
           <div class="control">
             <input class="input" type="text" placeholder="Image URL" name="imageUrl">

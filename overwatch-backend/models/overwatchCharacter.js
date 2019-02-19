@@ -22,6 +22,10 @@ const owCharacter = new Schema({
   imageUrl: {
     type: String,
     required: true
+  },
+  quote: {
+    type: String,
+    required: true
   }
 });
 

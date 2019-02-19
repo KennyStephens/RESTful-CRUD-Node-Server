@@ -40,13 +40,15 @@ exports.postOneCharacter = (req, res, next) => {
   const ultimate = req.body.ultimate;
   const className = req.body.class;
   const imageUrl = req.body.imageUrl
+  const quote = req.body.quote
 
   const character = new OwCharacter({
     name: name,
     ultimate: ultimate,
     class: className,
     weapon: weapon,
-    imageUrl: imageUrl
+    imageUrl: imageUrl,
+    quote: quote
   });
   character.save()
     .then(result => {
@@ -75,14 +77,16 @@ exports.putOneCharacter = (req, res, next) => {
   const updatedWeapon = req.body.weapon;
   const updatedUltimate = req.body.ultimate;
   const updatedClass = req.body.characterClass;
-  const updatedImageUrl = req.body.imageUrl
+  const updatedImageUrl = req.body.imageUrl;
+  const updatedQuote = req.body.quote;
 
   OwCharacter.findByIdAndUpdate(characterId, {
       name: updatedName,
       weapon: updatedWeapon,
       ultimate: updatedUltimate,
       class: updatedClass,
-      imageUrl: updatedImageUrl
+      imageUrl: updatedImageUrl,
+      quote: updatedQuote
     })
     .then(result => {
       res.status(200)

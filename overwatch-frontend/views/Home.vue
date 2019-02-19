@@ -15,28 +15,13 @@
                   <img :src="character.imageUrl" alt="Avatar" style="max-height:375px;">
                 </div>
                 <div class="flip-card-back">
-                  <p>
-                    Name:
-                    <span class="has-text-weight-bold">{{ character.name }}</span>
-                  </p>
-                  <p>
-                    Class:
-                    <span class="has-text-weight-bold">{{ character.class }}</span>
-                  </p>
-                  <p>
-                    Weapon:
-                    <span class="has-text-weight-bold">{{ character.weapon }}</span>
-                  </p>
-                  <p>
-                    Ultimate:
-                    <span class="has-text-weight-bold">{{ character.ultimate }}</span>
-                  </p>
-                  <router-link :to="/character-detail/ + character.name" tag="button" class="button is-primary is-small" style="margin-bottom: 6px;">More Details
-                    <!-- <button
-                      class="button is-primary is-small"
-                      style="margin-bottom: 6px;"
-                    >More Details</button> -->
-                  </router-link>
+                  <h1 class="is-size-4 is-italic has-text-weight-light">"{{ character.quote }}"</h1>
+                  <router-link
+                    :to="/character-detail/ + character.name"
+                    tag="button"
+                    class="button is-primary is-small"
+                    style="margin-bottom: 6px;"
+                  >More Details</router-link>
                   <button
                     class="button is-primary is-small"
                     style="margin-bottom: 6px;"
@@ -112,6 +97,19 @@
             </div>
           </div>
           <div class="field">
+            <label class="label has-text-light">Quote</label>
+            <div class="control">
+              <input
+                id="quote"
+                class="input"
+                type="text"
+                placeholder="Character Quote"
+                name="quote"
+                :value="characterEditData.quote"
+              >
+            </div>
+          </div>
+          <div class="field">
             <label class="label has-text-light">Image URL</label>
             <div class="control">
               <input
@@ -168,7 +166,8 @@ export default {
         class: characterData.class,
         weapon: characterData.weapon,
         ultimate: characterData.ultimate,
-        imageUrl: characterData.imageUrl
+        imageUrl: characterData.imageUrl,
+        quote: characterData.quote
       };
     },
     updateCharacter() {
@@ -179,6 +178,7 @@ export default {
       const weapon = document.getElementById("weapon").value;
       const ultimate = document.getElementById("ultimate").value;
       const imageUrl = document.getElementById("imageUrl").value;
+      const quote = document.getElementById("quote").value;
 
       const updatedCharacterData = {
         id,
@@ -186,7 +186,8 @@ export default {
         characterClass,
         weapon,
         ultimate,
-        imageUrl
+        imageUrl,
+        quote
       };
       // console.log(updatedCharacterData);
       fetch("http://localhost:5000/put", {
@@ -215,7 +216,7 @@ export default {
         return response.json();
       })
       .then(data => {
-        // console.log(data);
+        console.log(data);
         this.characterData = data;
       })
       .catch(err => console.log(err));
@@ -301,7 +302,6 @@ export default {
 .modal-background {
   background: rgba(0, 0, 0, 0.95);
 }
-
 </style>
 
 
