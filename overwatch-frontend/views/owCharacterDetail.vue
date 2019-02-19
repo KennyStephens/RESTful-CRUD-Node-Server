@@ -88,7 +88,15 @@ export default {
       const imageArraySelection = Math.floor(Math.random() * imageArrayLength);
       this.randomImage = imageArraySelection;
       console.log(imageArraySelection);
+    },
+    imageTransition() {
+        document.querySelector('img').style.opacity = "1";
+        document.querySelector('img').style.right = "0";
+        
     }
+  },
+  mounted() {
+      this.imageTransition();
   }
 };
 </script>
@@ -98,6 +106,7 @@ export default {
   background-size: cover;
   border-radius: 6px;
   box-shadow: 3px 3px 3px #aaa;
+  overflow: hidden;
 }
 
 .characterDataContainer {
@@ -108,6 +117,10 @@ export default {
 
 img {
     max-height: 350px;
+    opacity: 0;
+    position: relative;
+    right: -600px;
+    transition: all 1s;
 }
 </style>
 
