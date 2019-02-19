@@ -7,7 +7,7 @@
             class="column is-4 character-card"
             v-for="(character, i) in characterData"
             :key="character._id"
-          >
+          ><router-link :to="/character-detail/ + character.name">
             <div class="flip-card">
               <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -43,6 +43,7 @@
                 </div>
               </div>
             </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -171,7 +172,7 @@ export default {
     },
     updateCharacter() {
       // console.log(this.characterEditData);
-      const id = document.getElementById('id').value;
+      const id = document.getElementById("id").value;
       const name = document.getElementById("name").value;
       const characterClass = document.getElementById("characterClass").value;
       const weapon = document.getElementById("weapon").value;
@@ -186,7 +187,7 @@ export default {
         ultimate,
         imageUrl
       };
-      console.log(updatedCharacterData)
+      console.log(updatedCharacterData);
       fetch("http://localhost:5000/put", {
         method: "PUT",
         headers: {
@@ -213,7 +214,7 @@ export default {
         return response.json();
       })
       .then(data => {
-        // console.log(data);
+        console.log(data);
         this.characterData = data;
       })
       .catch(err => console.log(err));
