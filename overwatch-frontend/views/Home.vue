@@ -7,7 +7,7 @@
             class="column is-4 character-card"
             v-for="(character, i) in characterData"
             :key="character._id"
-          ><router-link :to="/character-detail/ + character.name">
+          >
             <div class="flip-card">
               <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -31,6 +31,12 @@
                     Ultimate:
                     <span class="has-text-weight-bold">{{ character.ultimate }}</span>
                   </p>
+                  <router-link :to="/character-detail/ + character.name">
+                    <button
+                      class="button is-primary is-small"
+                      style="margin-bottom: 6px;"
+                    >More Details</button>
+                  </router-link>
                   <button
                     class="button is-primary is-small"
                     style="margin-bottom: 6px;"
@@ -43,7 +49,6 @@
                 </div>
               </div>
             </div>
-            </router-link>
           </div>
         </div>
       </div>
