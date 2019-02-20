@@ -274,6 +274,7 @@ export default {
 <style scoped>
 .card-background {
   background-size: cover;
+  background-position: bottom;
   border-radius: 6px;
   box-shadow: 3px 3px 3px #aaa;
   overflow: hidden;
