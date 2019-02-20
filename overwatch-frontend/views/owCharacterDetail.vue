@@ -205,7 +205,7 @@ export default {
       })
         .then(result => {
           return console.log(result);
-          this.$router.push({name: 'home'});
+          this.$router.push({ name: "home" });
         })
         .catch(err => console.log(err));
     },
@@ -256,7 +256,7 @@ export default {
           console.log(result);
           const modal = document.querySelector(".modal");
           modal.classList.remove("is-active");
-          this.$router.push({name: 'home'});
+          this.$router.push({ name: "home" });
         })
         .catch(err => console.log(err));
     },
