@@ -5,7 +5,7 @@
         <div class="columns is-multiline">
           <div
             class="column is-4 character-card"
-            v-for="(character, i) in characterData"
+            v-for="character in characterData"
             :key="character._id"
           >
             <div class="flip-card">
@@ -20,17 +20,8 @@
                     :to="/character-detail/ + character.name"
                     tag="button"
                     class="button is-primary is-small"
-                    style="margin-bottom: 6px;"
+                    style="margin-top: 30px;"
                   >More Details</router-link>
-                  <button
-                    class="button is-primary is-small"
-                    style="margin-bottom: 6px;"
-                    @click="editCharacter(i)"
-                  >Edit Character</button>
-                  <button
-                    class="button is-danger is-small"
-                    @click="deleteCharacter(i)"
-                  >Delete Character</button>
                 </div>
               </div>
             </div>
@@ -38,100 +29,6 @@
         </div>
       </div>
     </section>
-    <div class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <h1 class="is-size-2 has-text-light">Edit a Character</h1>
-        <hr>
-        <form action="http://localhost:5000/put" method="POST">
-          <div class="field">
-            <label class="label has-text-light">Name</label>
-            <div class="control">
-              <input
-                id="name"
-                class="input"
-                type="text"
-                placeholder="Character Name"
-                name="name"
-                :value="characterEditData.name"
-              >
-            </div>
-          </div>
-          <div class="field">
-            <label class="label has-text-light">Class</label>
-            <div class="control">
-              <input
-                id="characterClass"
-                class="input"
-                type="text"
-                placeholder="Character Class"
-                name="characterClass"
-                :value="characterEditData.class"
-              >
-            </div>
-          </div>
-          <div class="field">
-            <label class="label has-text-light">Weapon</label>
-            <div class="control">
-              <input
-                id="weapon"
-                class="input"
-                type="text"
-                placeholder="Character Weapon"
-                name="weapon"
-                :value="characterEditData.weapon"
-              >
-            </div>
-          </div>
-          <div class="field">
-            <label class="label has-text-light">Ultimate</label>
-            <div class="control">
-              <input
-                id="ultimate"
-                class="input"
-                type="text"
-                placeholder="Character Ultimate"
-                name="ultimate"
-                :value="characterEditData.ultimate"
-              >
-            </div>
-          </div>
-          <div class="field">
-            <label class="label has-text-light">Quote</label>
-            <div class="control">
-              <input
-                id="quote"
-                class="input"
-                type="text"
-                placeholder="Character Quote"
-                name="quote"
-                :value="characterEditData.quote"
-              >
-            </div>
-          </div>
-          <div class="field">
-            <label class="label has-text-light">Image URL</label>
-            <div class="control">
-              <input
-                id="imageUrl"
-                class="input"
-                type="text"
-                placeholder="Image URL"
-                name="imageUrl"
-                :value="characterEditData.imageUrl"
-              >
-            </div>
-          </div>
-          <input id="id" type="hidden" :value="characterEditData.id" name="id">
-          <div class="field">
-            <div class="control">
-              <button class="button is-link" type="button" @click="updateCharacter">Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <button @click="modalClose" class="modal-close is-large" aria-label="close"></button>
-    </div>
   </div>
 </template>
 
@@ -139,71 +36,8 @@
 export default {
   data() {
     return {
-      characterData: [],
-      characterEditData: {}
+      characterData: []
     };
-  },
-  methods: {
-    deleteCharacter(i) {
-      const characterId = this.characterData[i]._id;
-      return fetch(`http://localhost:5000/delete/${characterId}`, {
-        method: "DELETE"
-      })
-        .then(result => {
-          return console.log(result);
-        })
-        .catch(err => console.log(err));
-    },
-    editCharacter(i) {
-      const modal = document.querySelector(".modal").classList.add("is-active");
-
-      const characterData = this.characterData[i];
-      // console.log(characterData._id);
-
-      this.characterEditData = {
-        id: characterData._id,
-        name: characterData.name,
-        class: characterData.class,
-        weapon: characterData.weapon,
-        ultimate: characterData.ultimate,
-        imageUrl: characterData.imageUrl,
-        quote: characterData.quote
-      };
-    },
-    updateCharacter() {
-      // console.log(this.characterEditData);
-      const id = document.getElementById("id").value;
-      const name = document.getElementById("name").value;
-      const characterClass = document.getElementById("characterClass").value;
-      const weapon = document.getElementById("weapon").value;
-      const ultimate = document.getElementById("ultimate").value;
-      const imageUrl = document.getElementById("imageUrl").value;
-      const quote = document.getElementById("quote").value;
-
-      const updatedCharacterData = {
-        id,
-        name,
-        characterClass,
-        weapon,
-        ultimate,
-        imageUrl,
-        quote
-      };
-      // console.log(updatedCharacterData);
-      fetch("http://localhost:5000/put", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updatedCharacterData)
-      })
-        .then(result => console.log(result))
-        .catch(err => console.log(err));
-    },
-    modalClose() {
-      const modal = document.querySelector(".modal");
-      modal.classList.remove("is-active");
-    }
   },
   created() {
     fetch(`http://localhost:5000/`, {
