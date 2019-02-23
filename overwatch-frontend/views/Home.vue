@@ -15,7 +15,8 @@
                   <img :src="character.imageUrl" alt="Avatar" style="max-height:375px;">
                 </div>
                 <div class="flip-card-back">
-                  <h1 class="is-size-4 is-italic has-text-weight-light">"{{ character.quote }}"</h1>
+                  <i class="fas fa-quote-left is-size-3" style="color: rgba(255,255,255,.2)"></i>
+                  <h1 class="is-size-4 is-italic has-text-weight-light">{{ character.quote }}</h1>
                   <router-link
                     :to="/character-detail/ + character.name"
                     tag="button"
