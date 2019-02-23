@@ -1,6 +1,8 @@
 <template>
   <section class="section">
     <div class="container">
+      <div id="deleted" class="notification is-danger is-size-5" v-show="deleteShow">
+      </div>
       <div
         class="card card-background"
         :style="{ backgroundImage: 'url(' + images[randomImage] + ')' }"
@@ -146,6 +148,7 @@ export default {
     return {
       name: this.$route.params.name,
       characterData: {},
+      deleteShow: false,
       images: [
         "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/4/46/Hanamura_concept.jpg/800px-Hanamura_concept.jpg?version=cba0e20ddb6e4d0a188668500b8bb7ab",
         "https://gamepedia.cursecdn.com/overwatch_gamepedia/thumb/d/de/Anubis_concept.jpg/800px-Anubis_concept.jpg?version=01cc8d241e63fa2721da953444149630",
@@ -204,8 +207,21 @@ export default {
         method: "DELETE"
       })
         .then(result => {
-          return console.log(result);
-          this.$router.push({ name: "home" });
+          // return console.log(result);
+          this.deleteShow = true;
+          const deleteCharacter = document.getElementById("deleted");
+          deleteCharacter.innerHTML = "Character Deleted!";
+          setTimeout(() => {
+            if (
+              this.$router.currentRoute.path !==
+              `http://localhost:5000/name/${this.name}`
+            ) {
+              this.$router.push({ name: "home" });
+            }
+          }, 4000);
+
+          // console.log(this.$router.currentRoute.path);
+          // this.$router.go('/');
         })
         .catch(err => console.log(err));
     },
@@ -274,6 +290,7 @@ export default {
 <style scoped>
 .card-background {
   background-size: cover;
+  background-position: bottom;
   border-radius: 6px;
   box-shadow: 3px 3px 3px #aaa;
   overflow: hidden;
