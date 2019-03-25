@@ -41,7 +41,7 @@ export default {
     };
   },
   created() {
-    fetch(`http://localhost:5000/`, {
+    fetch(`https://secure-reef-86107.herokuapp.com`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"

@@ -50,7 +50,7 @@
       <div class="modal-content">
         <h1 class="is-size-2 has-text-light">Edit a Character</h1>
         <hr>
-        <form action="http://localhost:5000/put" method="POST">
+        <form action="https://secure-reef-86107.herokuapp.com/put" method="POST">
           <div class="field">
             <label class="label has-text-light">Name</label>
             <div class="control">
@@ -173,7 +173,7 @@ export default {
     };
   },
   created() {
-    fetch(`http://localhost:5000/name/${this.name}`, {
+    fetch(`https://secure-reef-86107.herokuapp.com/name/${this.name}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -203,7 +203,7 @@ export default {
     deleteCharacter() {
       const characterId = this.characterData._id;
       // console.log(characterId);
-      return fetch(`http://localhost:5000/delete/${characterId}`, {
+      return fetch(`https://secure-reef-86107.herokuapp.com/delete/${characterId}`, {
         method: "DELETE"
       })
         .then(result => {
@@ -261,7 +261,7 @@ export default {
         quote
       };
       // console.log(updatedCharacterData);
-      fetch("http://localhost:5000/put", {
+      fetch("https://secure-reef-86107.herokuapp.com/put", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

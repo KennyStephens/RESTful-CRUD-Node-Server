@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="is-size-2">Add a Character</h1>
       <hr>
-      <form action="http://localhost:5000/post" method="POST">
+      <form action="https://secure-reef-86107.herokuapp.com/post" method="POST">
         <div class="field">
           <label class="label">Name</label>
           <div class="control">
