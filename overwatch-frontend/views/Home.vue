@@ -1,17 +1,70 @@
 <template>
   <div>
     <section class="section">
-      <div class="container filter">
-        <div class="select">
-          <select>
-            <option>Support</option>
-            <option>Damage</option>
-            <option>Tank</option>
-          </select>
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                  <select class="filter-by-class">
+                    <option>Support</option>
+                    <option>Damage</option>
+                    <option>Tank</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <button class="button is-primary control" @click="filterCharsClass">Filter by Class</button>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                  <select class="filter-by-name">
+                    <option>Ana</option>
+                    <option>Ashe</option>
+                    <option>Bastion</option>
+                    <option>Brigitte</option>
+                    <option>D. Va</option>
+                    <option>Doomfist</option>
+                    <option>Genji</option>
+                    <option>Hanzo</option>
+                    <option>Junkrat</option>
+                    <option>Lucio</option>
+                    <option>McCree</option>
+                    <option>Mei</option>
+                    <option>Mercy</option>
+                    <option>Moira</option>
+                    <option>Orisa</option>
+                    <option>Pharah</option>
+                    <option>Reaper</option>
+                    <option>Reinhardt</option>
+                    <option>Roadhog</option>
+                    <option>Soldier 76</option>
+                    <option>Sombra</option>
+                    <option>Symmetra</option>
+                    <option>Torbjorn</option>
+                    <option>Tracer</option>
+                    <option>Widowmaker</option>
+                    <option>Winston</option>
+                    <option>Wrecking Ball</option>
+                    <option>Zarya</option>
+                    <option>Zenyatta</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control">
+                <button class="button is-primary control" @click="filterCharsName">Filter by Name</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <button style="margin-left: 10px;" @click="filterChars" class="button is-primary">Filter Characters</button>
       </div>
     </section>
+
     <section class="section">
       <div class="container">
         <div class="columns is-multiline">
@@ -69,11 +122,32 @@ export default {
       .catch(err => console.log(err));
   },
   methods: {
-    filterChars() {
-      const selectInputValue = document.querySelector("select").value;
+    filterCharsClass() {
+      const selectInputValue = document.querySelector(".filter-by-class").value;
       console.log(selectInputValue);
       fetch(
         `https://secure-reef-86107.herokuapp.com/class/${selectInputValue}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      )
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          this.characterData = data;
+        })
+        .catch(err => console.log(err));
+    },
+    filterCharsName() {
+      const selectInputValue = document.querySelector(".filter-by-name").value;
+      console.log(selectInputValue);
+      fetch(
+        `https://secure-reef-86107.herokuapp.com/name/${selectInputValue}`,
         {
           method: "GET",
           headers: {
