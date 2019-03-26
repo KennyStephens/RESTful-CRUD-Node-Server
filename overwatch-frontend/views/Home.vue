@@ -1,6 +1,18 @@
 <template>
   <div>
     <section class="section">
+      <div class="container filter">
+        <div class="select">
+          <select>
+            <option>Support</option>
+            <option>Damage</option>
+            <option>Tank</option>
+          </select>
+        </div>
+        <button style="margin-left: 10px;" @click="filterChars" class="button is-primary">Filter Characters</button>
+      </div>
+    </section>
+    <section class="section">
       <div class="container">
         <div class="columns is-multiline">
           <div
@@ -55,6 +67,29 @@ export default {
         this.characterData = data;
       })
       .catch(err => console.log(err));
+  },
+  methods: {
+    filterChars() {
+      const selectInputValue = document.querySelector("select").value;
+      console.log(selectInputValue);
+      fetch(
+        `https://secure-reef-86107.herokuapp.com/class/${selectInputValue}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      )
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          this.characterData = data;
+        })
+        .catch(err => console.log(err));
+    }
   }
 };
 </script>
@@ -137,6 +172,15 @@ export default {
 
 .modal-background {
   background: rgba(0, 0, 0, 0.95);
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+.filter select {
+  width: 200px;
 }
 </style>
 
