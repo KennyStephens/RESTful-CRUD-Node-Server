@@ -2,7 +2,9 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
 import OwAddCharacter from "../views/OwAddCharacter.vue";
-import owCharacterDetail from "../views/owCharacterDetail.vue";
+import OwCharacterDetail from "../views/owCharacterDetail.vue";
+import HomeGraphql from "../views/HomeGraphql.vue";
+import OwAddCharacterGraphql from '../views/OwAddCharacterGraphql';
 
 Vue.use(Router);
 
@@ -21,7 +23,17 @@ export default new Router({
     {
       path:"/character-detail/:name",
       name: "characterDetail",
-      component: owCharacterDetail
+      component: OwCharacterDetail
+    },
+    {
+      path:"/home-graphql",
+      name: "homeGraphql",
+      component: HomeGraphql
+    },
+    {
+      path: "/add-character-graphql",
+      name: "addCharacterGraphql",
+      component: OwAddCharacterGraphql
     }
   ]
 });
