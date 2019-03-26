@@ -129,7 +129,7 @@ export default {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-image: linear-gradient(#f19c1d, #da880f);
+  background-image: linear-gradient(#51a3f6, #218ffe);
   color: black;
 }
 
